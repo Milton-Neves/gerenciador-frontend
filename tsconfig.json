@@ -12,6 +12,12 @@
     "skipLibCheck": true,
     "types": ["node", "jest"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/router/index.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/router/index.ts"
+  ],
   "exclude": ["node_modules"]
 }
