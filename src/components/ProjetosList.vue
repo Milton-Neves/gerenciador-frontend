@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr v-for="projeto in projetos" :key="projeto.id">
-          <td class="link-id" @click="$emit('projetoSelecionado', projeto)">{{ projeto.id }}</td>
+          <td class="link-id" >{{ projeto.id }}</td>
           <td>{{ projeto.nomeProjeto }}</td>
           <td>{{ projeto.nomeCliente }}</td>
           <td class="status">{{ projeto.status }}</td>
@@ -70,6 +70,18 @@ td {
   color: #f45327;
   text-decoration: none;
   border-color: #f45327;
+  border-radius: 8px;
+  width: 100px;
+  height: 25px;
+  align-items: center;
+  display: flex;
+  font-size: 13px;
+  justify-content: center;
+}
+.btn-link:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #f45327;
   border-radius: 8px;
   width: 100px;
   height: 25px;

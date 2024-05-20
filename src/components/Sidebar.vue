@@ -7,6 +7,8 @@
       <hr />
       <router-link to="/projetos" class="sidebar-link">Projetos</router-link>
       <hr />
+      <router-link to="/atividades" class="sidebar-link">Atividades</router-link>
+      <hr />
     </div>
 
     <!-- Adicione mais links conforme necessário -->
@@ -39,7 +41,7 @@ hr {
 }
 .sidebar-box {
   position: fixed;
-  bottom:  200px;
+  bottom: 200px;
 }
 .titulo {
   color: #6e7177;

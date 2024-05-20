@@ -6,11 +6,9 @@
         Novo projeto
         <button class="buttonOpenCollapse">+</button>
       </div>
-      <div id="novoProjeto" :class="{ collapsed: !novoProjetoAberto }">
-        <ProjetoForm @projetoAdicionado="atualizarProjetos" />
-      </div>
       <ProjetosList :projetos="projetos" @projetoSelecionado="selecionarProjeto" />
     </div>
+    <ProjetoForm ref="projetoForm" @projetoAdicionado="atualizarProjetos" />
   </div>
 </template>
 
@@ -34,7 +32,7 @@ export default {
       this.$router.push(`/projetos/${projeto.id}`)
     },
     toggleNovoProjeto() {
-      this.novoProjetoAberto = !this.novoProjetoAberto
+      this.$refs.projetoForm.openModal()
     }
   }
 }
@@ -44,7 +42,7 @@ export default {
 .projeto-view {
   margin-top: 150px;
   margin-left: 70px;
-  width: 1200px;
+  margin-right: 70px;
 }
 .box {
   background-color: #fff;
@@ -73,12 +71,5 @@ export default {
   font-size: 18px;
   margin-left: 10px;
   line-height: 17px;
-}
-#novoProjeto {
-  transition: height 0.3s ease-out;
-  overflow: hidden;
-}
-#novoProjeto.collapsed {
-  height: 0;
 }
 </style>
