@@ -42,7 +42,7 @@
           </div>
           <div class="form-group buttons">
             <button type="button" class="btn btn-secondary" @click="closeModal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" @click="addCliente">
               {{ modo === 'edicao' ? 'Salvar' : 'Adicionar' }}
             </button>
           </div>
@@ -53,10 +53,12 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
-      nomeCliente: '',
+      nome: '',
       email: '',
       telefone: '',
       descricao: '',
@@ -67,17 +69,19 @@ export default {
     modo: {
       type: String,
       default: 'novo'
-    }
+    },
+    api: { client: 'localhost:8080/clientes' }
   },
   methods: {
-    adicionarOuEditarCliente() {
+    async adicionarOuEditarCliente() {
       const cliente = {
-        id: this.cliente?.id || Date.now(),
-        nomeCliente: this.nomeCliente,
+        // id: this.cliente?.id || Date.now(),
+        nome: this.nomeCliente,
         email: this.email,
         telefone: this.telefone,
         descricao: this.descricao
       }
+      await axios.post('http://localhost:8080/clientes', cliente)
       this.$emit('clienteAdicionado', cliente)
       this.resetForm()
       this.closeModal()

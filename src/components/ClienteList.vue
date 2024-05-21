@@ -13,7 +13,7 @@
       <tbody>
         <tr v-for="cliente in clientes" :key="cliente.id">
           <td class="link-id">{{ cliente.id }}</td>
-          <td>{{ cliente.nomeCliente }}</td>
+          <td>{{ cliente.nome }}</td>
           <td>{{ cliente.email }}</td>
           <td>{{ cliente.telefone }}</td>
           <td>{{ cliente.descricao }}</td>
@@ -24,9 +24,23 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  componentes: {
+    ClienteForm
+  },
+  data() {
+    this.listarClientes().then((it) => {})
+    return {}
+  },
   props: {
     clientes: Array
+  },
+  methods: {
+    async listarClientes() {
+      return axios.get('http://localhost:8080/clientes')
+    }
   }
 }
 </script>
