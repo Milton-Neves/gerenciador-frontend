@@ -1,29 +1,45 @@
 <template>
-  <div>
-    <div class="task-detail">
-      <h1>Nome da Task</h1>
-      <div v-if="project">
-        <!-- <p>ID: {{ project.id }}</p> -->
-        <p class="tag-project">{{ project.nome }}</p>
-        <p>Cliente: {{ project.clienteNome }}</p>
-        <p>Status: {{ project.status }}</p>
-        <button @click="showActivities">Ver Atividades</button>
-      </div>
+  <div class="task-detail">
+    <h3 v-if="project">{{ project.status }}</h3>
 
-      <!-- Modal para mostrar detalhes das atividades -->
-      <div v-if="showModal" class="modal">
-        <div class="modal-content">
-          <span class="close" @click="showModal = false">&times;</span>
-          <h2>Atividades</h2>
-          <ul>
-            <li v-for="atividade in project.atividades" :key="atividade.id">
-              {{ atividade.nome }} - {{ atividade.descricao }}
-            </li>
-          </ul>
+    <div class="card-detail" v-if="project">
+      <button class="edit-button" @click="editProject">
+        <img src="../assets/edit-icon.svg" />
+      </button>
+      <h1>Nome da Task</h1>
+      <!-- <p>ID: {{ project.id }}</p> -->
+      <p class="tag-project">{{ project.nome }}</p>
+      <p class="description">{{ project.projetctDescription }}</p>
+      <div class="date-task">
+        <div class="align">
+          <img src="../assets/icon-calendar.svg" />
+          <p>Data de Início: {{ project.dataInicio }}</p>
+        </div>
+        <div class="align">
+          <img src="../assets/icon-date-finished.svg" />
+          <p>
+            Data de Conclusão:
+            {{ project.dataConclusao }}
+          </p>
         </div>
       </div>
+
+      <!-- <button @click="showActivities">Ver Atividades</button>  -->
     </div>
   </div>
+
+  <!-- Modal para mostrar detalhes das atividades -->
+  <!-- <div v-if="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" @click="showModal = false">&times;</span>
+      <h2>Atividades</h2>
+      <ul>
+        <li v-for="atividade in project.atividades" :key="atividade.id">
+          {{ atividade.nome }} - {{ atividade.descricao }}
+        </li>
+      </ul>
+    </div>
+  </div> -->
 </template>
 
 <script lang="ts">
@@ -44,8 +60,10 @@ export default defineComponent({
     this.project = {
       id: projectId,
       nome: 'Projeto 1',
-      clienteNome: 'Cliente Exemplo',
+      projetctDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       status: 'Em Andamento',
+      dataInicio: '2023-01-01',
+      dataConclusao: '2023-12-31',
       atividades: [
         { id: 1, nome: 'Atividade 1', descricao: 'Descrição da Atividade 1' },
         { id: 2, nome: 'Atividade 2', descricao: 'Descrição da Atividade 2' }
@@ -61,6 +79,57 @@ export default defineComponent({
 </script>
 
 <style scoped>
+img {
+  width: 20px;
+  position: absolute;
+  margin-left: 240px;
+}
+.date-task {
+  background-color: #f4f7fe;
+  width: 174px;
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  .align {
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 10px;
+      margin: 5px;
+      margin-left: 20px;
+    }
+    img {
+      margin: 0;
+      width: 15px;
+    }
+  }
+}
+button,
+.edit-button {
+  background: none;
+  border: none;
+}
+.card-detail {
+  background-color: #fff;
+  width: 312px;
+  padding: 20px;
+  border-radius: 10px;
+  .description {
+    font-size: 14px;
+  }
+}
+h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #414042;
+  text-transform: uppercase;
+  background-color: #fff;
+  width: 312px;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
 .tag-project {
   font-size: 12px;
   background-color: #f4f7fe;
@@ -73,11 +142,7 @@ export default defineComponent({
   justify-content: center;
 }
 .task-detail {
-  background: white;
-  width: 312px;
-  padding: 20px;
-  margin: 100px;
-  border-radius: 10px;
+  margin: 150px 100px;
   h1 {
     font-size: 18px;
     color: #414042;

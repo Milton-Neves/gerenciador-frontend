@@ -92,17 +92,6 @@ export default defineComponent({
       }
     }
   },
-  // methods: {
-  //   salvarAtividade() {
-  //     this.$emit('novaAtividade', { ...this.novaAtividade })
-  //     this.novaAtividade.nome = ''
-  //     this.novaAtividade.descricao = ''
-  //     this.novaAtividade.nomeProjeto = ''
-  //     this.novaAtividade.status = ''
-  //     this.novaAtividade.dataInicio = ''
-  //     this.novaAtividade.dataFim = ''
-  //   }
-  // }
   methods: {
     salvarAtividade() {
       this.$emit('novaAtividade', { ...this.novaAtividade })
