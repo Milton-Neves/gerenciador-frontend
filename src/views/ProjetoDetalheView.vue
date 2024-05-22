@@ -45,18 +45,29 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 
+interface Project {
+  id: string
+  nome: string
+  projetctDescription: string
+  status: string
+  dataInicio: string
+  dataConclusao: string
+  atividades: { id: number; nome: string; descricao: string }[]
+}
+
 export default defineComponent({
   name: 'ProjetoDetalheView',
   data() {
     return {
-      project: null,
+      project: null as Project | null,
       showModal: false
     }
   },
   mounted() {
-    // Aqui você deve carregar os dados do projeto usando o ID passado na rota
-    const projectId = this.$route.params.id
-    // Simulação de dados
+    let projectId = this.$route.params.id as string | string[]
+    if (Array.isArray(projectId)) {
+      projectId = projectId[0]
+    }
     this.project = {
       id: projectId,
       nome: 'Projeto 1',
@@ -73,6 +84,9 @@ export default defineComponent({
   methods: {
     showActivities() {
       this.showModal = true
+    },
+    editProject() {
+      console.log('Edit project clicked')
     }
   }
 })
