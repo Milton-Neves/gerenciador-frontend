@@ -25,6 +25,7 @@
 
 <script>
 import axios from 'axios'
+import ClienteForm from './ClienteForm.vue'
 
 export default {
   componentes: {
